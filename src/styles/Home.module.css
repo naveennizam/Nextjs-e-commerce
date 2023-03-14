@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
   min-height: 100vh;
 }
 
@@ -16,6 +15,10 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
+}
+.logo {   /* gul Ahmed logo*/
+filter: brightness(0) invert(1);
+transition: all .5s;
 }
 
 .description a {
@@ -257,16 +260,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
 
-  .logo,
-  .thirteen img {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-  }
-}
 
 @keyframes rotate {
   from {
