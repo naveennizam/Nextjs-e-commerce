@@ -3,7 +3,24 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  
+}
+.mainonefront {
+  background-color: tan;
+}
+.onefront {
+  text-decoration: none;
+  color: black;
+  
+}
+.onefront:hover {
+  text-decoration: none;
+  color: black;
+  
+}
+#para {
+  padding: 0;
+  margin: 0;
 }
 
 .description {
