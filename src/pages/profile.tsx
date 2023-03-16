@@ -4,6 +4,15 @@ import {findUserById} from '../../database/user';
 import { getSession } from "next-auth/react";
 //import Countries from "../components/Countries";
 import Router from 'next/router';
+
+import { signOut } from 'next-auth/react';
+
+
+  const handleSignout = (e) => {
+    e.preventDefault()
+    signOut();
+
+  }
 const Page: NextPage = (props) => {
   
     return (
@@ -83,6 +92,9 @@ const Page: NextPage = (props) => {
             <input name="id" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="hidden" value={props.user.id}/>
             </div>
             <button type="submit" className='btn primary-btn'>Update</button>
+            <button onClick={() => signOut("facebook")} type="button" className="btn btn-white border rounded-0 p-3 flex-fill">
+                    SignOut
+                  </button>
           </form>
           </div>
         </div>
@@ -132,15 +144,15 @@ const Page: NextPage = (props) => {
   res.status==201 ? Router.reload() : alert('An error occured. Please try again!')
 }
   export const getServerSideProps: GetServerSideProps = async (context) => {
-    // const session = await getSession(context)
-    // if (!session){
-    //   return {
-    //     redirect: {
-    //       permanent: false,
-    //       destination: "/"
-    //     }
-    //   }
-    // }
+    const session = await getSession(context)
+    if (!session){
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login"
+        }
+      }
+    }
     const id=session.user.id;
 
     console.log(id)

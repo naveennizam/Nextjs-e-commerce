@@ -8,11 +8,14 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
+
+
+
 const Page: NextPage = () => {
 
-  const Countries = dynamic(() => import('../components/Countries'), {
-    ssr:false
-  });
+  // const Countries = dynamic(() => import('../components/Countries'), {
+  //   ssr:false
+  // });
 
   const [forgetPWD, setForgetPWD] = useState(false);
     return(
@@ -62,6 +65,8 @@ const Page: NextPage = () => {
                   <button onClick={() => signIn("facebook")} type="button" className="btn btn-white border rounded-0 p-3 flex-fill">
                     <Image src="/img/svg/fb-icon.svg" alt="" width={20} height={20} />Log in with Facebook
                   </button>
+                 
+
                 </div>
               </div>
               <div className="bg-white p-4 flex-fill w50">
@@ -93,7 +98,7 @@ const Page: NextPage = () => {
                     </div>
                   </div>
                   <div className="mb-2">
-                    <Countries />
+                    {/* <Countries /> */}
                     <span id="country-error" className="invalid-feedback"></span>
                   </div>
                   <div className="d-grid">
@@ -113,7 +118,7 @@ const Page: NextPage = () => {
             </div>
           </div>
           <div className='col-12 text-center mt-4'>
-            <Link href="/"><a className='secondary-btn bg-primary'>Back to Home</a></Link>
+            <Link href="/">Back to Home</Link>
           </div>
         </div>
       </div>
@@ -229,7 +234,7 @@ const login = async (e) => {
     const name = e.target.name.value;
   const email = e.target.email.value;
   const password = e.target.password.value;
-  const country = e.target.country.value;
+ // const country = e.target.country.value;
 
   if (!name)
     return document.getElementById('name-error').innerHTML='Please enter a valid name.';
@@ -240,8 +245,8 @@ const login = async (e) => {
     if (!password)
     return document.getElementById('reg-pwd-error').innerHTML='Please enter a valid password';
 
-    if (!country)
-    return document.getElementById('country-error').innerHTML='Please select your country';
+    // if (!country)
+    // return document.getElementById('country-error').innerHTML='Please select your country';
 
     const res = await fetch('/api/auth/register', {
       method: 'POST',
@@ -252,7 +257,8 @@ const login = async (e) => {
           name: name,
           email: email,
           password: password,
-          country: country
+        //  country: country
+        
       }),
   });
 
@@ -261,6 +267,8 @@ const login = async (e) => {
 
   if(res.status != 201)
   return alert(data.message)
+
+
 
   const status = await signIn('credentials', {
     redirect: false,
@@ -273,8 +281,6 @@ Router.push('/');
 
   }
 
-
-
   export const getServerSideProps: GetServerSideProps = async (req) => {
     const session = await getSession(req)
 
@@ -282,7 +288,10 @@ Router.push('/');
     return {
       redirect: {
         permanent: false,
-        destination: "/"
+        // destination: "/profile"
+                destination: ""
+
+        
       }
     }
   }
