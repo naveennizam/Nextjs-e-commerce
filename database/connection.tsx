@@ -17,7 +17,6 @@ export async function connectToDatabase(): Promise <Pool> {
     database : "mydb"
   });
 
-  
   return client;
   
 }

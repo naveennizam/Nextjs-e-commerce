@@ -5,6 +5,7 @@ import { getSession } from "next-auth/react";
 //import Countries from "../components/Countries";
 import Router from 'next/router';
 const Page: NextPage = (props) => {
+  
     return (
       <>
       <section className='about-us clearfix mt-5'>
@@ -108,8 +109,6 @@ const Page: NextPage = (props) => {
     alert('An error occured. Please try again!')
     }
 
-
-
   }
   const updatePassword = async (e) => {
     e.preventDefault();
@@ -133,17 +132,21 @@ const Page: NextPage = (props) => {
   res.status==201 ? Router.reload() : alert('An error occured. Please try again!')
 }
   export const getServerSideProps: GetServerSideProps = async (context) => {
-    const session = await getSession(context)
-    if (!session){
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/"
-        }
-      }
-    }
+    // const session = await getSession(context)
+    // if (!session){
+    //   return {
+    //     redirect: {
+    //       permanent: false,
+    //       destination: "/"
+    //     }
+    //   }
+    // }
     const id=session.user.id;
+
+    console.log(id)
       const user = await findUserById(id);
+      console.log('user',user);
+      
       return {props: {user: JSON.parse(JSON.stringify(user))}}
     }
     
