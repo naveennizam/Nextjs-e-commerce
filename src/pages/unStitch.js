@@ -18,7 +18,7 @@ const Unstitch = () => {
         <div className='row d-flex justify-content-evenly flex-wrap '>
           <div className="col-md-12 hovereffect " >
           <Link href={'/onefront'}>  <img style={{ width: '49%' }} className="px-1 py-1" src="https://www.gulahmedshop.com/media/wysiwyg/cms-page/14_ideas_unstitched/23_02_13/01.jpg" alt="..." /> </Link>
-          <Link href={'/onefront'}>  <img style={{ width: '49%' }} className="px-1 py-1" src="https://www.gulahmedshop.com/media/wysiwyg/cms-page/14_ideas_unstitched/23_02_13/02.jpg" alt="..." /> </Link>
+          <Link href={'/'}>  <img style={{ width: '49%' }} className="px-1 py-1" src="https://www.gulahmedshop.com/media/wysiwyg/cms-page/14_ideas_unstitched/23_02_13/02.jpg" alt="..." /> </Link>
           </div>
         </div>
 
