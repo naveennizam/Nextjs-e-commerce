@@ -11,7 +11,7 @@ const handler = async (req, res) => {
 
     if (userExists)
       return res
-        .status(422)
+        .status(422)  // validation error  400:  invalid syntax (e.g. parsing error)
         .json({ message: "email " + email + " already exists" })
 
     const obj = {
@@ -26,7 +26,7 @@ const handler = async (req, res) => {
     //  register(obj);
 
     res.status(201).json({ message: "User created", ...insert })
-  }
+  
 }
-
+}
 export default handler

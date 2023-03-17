@@ -60,13 +60,13 @@ pages: {
     jwt: async ({ token, user, account }) => {
       user && (token.user = user)
 
-      if (account) {
-        if (account.provider == "google" || account.provider == "facebook") {
-          token.user.socialOwner = account.provider
-          const socialUser = await getSocialUser(token.user)
-          token.user = socialUser
-        }
-      }
+      // if (account) {
+      //   if (account.provider == "google" || account.provider == "facebook") {
+      //     token.user.socialOwner = account.provider
+      //     const socialUser = await getSocialUser(token.user)
+      //     token.user = socialUser
+      //   }
+      // }
 
       return token
     },
@@ -77,25 +77,25 @@ pages: {
   }
 })
 
-const getSocialUser = async data => {
-  const user = await findUserByEmail(data.email)
+// const getSocialUser = async data => {
+//   const user = await findUserByEmail(data.email)
 
-  if (!user) {
-    const obj = {
-      email: data.email,
-      name: data.name,
-      socialOwner: data.socialOwner,
-      socialId: data.id
-    }
+//   if (!user) {
+//     const obj = {
+//       email: data.email,
+//       name: data.name,
+//       socialOwner: data.socialOwner,
+//       socialId: data.id
+//     }
 
-    const insert = await insertUser(obj)
+//     const insert = await insertUser(obj)
 
-    return Promise.resolve({
-      id: insert.insertId,
-      email: data.email,
-      role: "user"
-    })
-  }
+//     return Promise.resolve({
+//       id: insert.insertId,
+//       email: data.email,
+//       role: "user"
+//     })
+//   }
 
-  return Promise.resolve({ id: user.id, email: user.email, role: user.role })
-}
+//   return Promise.resolve({ id: user.id, email: user.email, role: user.role })
+// }

@@ -1,6 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
+import { signOut } from 'next-auth/react';
+
+
+  const handleSignout = (e) => {
+    e.preventDefault()
+    signOut();
+
+  }
 const Navbar = () => {
     return (
         <>
@@ -36,7 +44,12 @@ const Navbar = () => {
                                 <a className="nav-link navbar-brand text-uppercase " href="#">Fragnance</a>
                             </li>
                         </ul>
-                        <a className="nav-link navbar-brand text-uppercase " href="#">Signup</a>
+                        <a onClick={() => signOut("facebook")} href="/"  className="nav-link navbar-brand text-uppercase ">
+                    SignOut
+                  </a>
+                        {/* <a className="nav-link navbar-brand text-uppercase " href="/">SignOut</a> */}
+                        <a className="nav-link navbar-brand text-uppercase " href="/login">Signup</a>
+
                     </div>
                 </div>
 

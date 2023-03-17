@@ -4,3 +4,10 @@ next run dev
 2. src/pages/api/  onepiece.js     (backend )
 3. src/pages/   onefront.js        (frontend of one piece)
 4. onepiece-unstitch               (database)
+
+
+
+
+login then go (profile)
+SignUp to go (onefront)
+signOut to go mainpage

@@ -298,7 +298,7 @@ const login = async e => {
 
   if (status?.error) return alert(status.error)
 
-  Router.push("/profile")
+  Router.push("/profile") //signin (login)
 }
 
 const register = async e => {
@@ -340,27 +340,30 @@ const register = async e => {
   const data = await res.json()
 
   if (res.status != 201) return alert(data.message)
-
+  
   const status = await signIn("credentials", {
     redirect: false,
     email: email,
     password: password
   })
 
-  Router.push("/profile") //SignUp
+  Router.push("/onefront") //SignUp first time
 }
 
+
+// when SignUp
 export const getServerSideProps = async req => {
   const session = await getSession(req)
-
+  console.log('hi');
   if (session) {
     return {
       redirect: {
         permanent: false,
-        destination: "/profile"
-      }
+        destination: "/onefront" //SignUp after signup
+      }  //second time
     }
   }
+  
 
   return { props: {} }
 }

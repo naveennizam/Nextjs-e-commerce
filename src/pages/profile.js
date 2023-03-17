@@ -1,5 +1,4 @@
-import type { NextPage } from 'next';
-import { GetServerSideProps } from 'next';
+
 import {findUserById} from '../../database/user';
 import { getSession } from "next-auth/react";
 //import Countries from "../components/Countries";
@@ -13,7 +12,7 @@ import { signOut } from 'next-auth/react';
     signOut();
 
   }
-const Page: NextPage = (props) => {
+const Page = (props) => {
   
     return (
       <>
@@ -143,7 +142,7 @@ const Page: NextPage = (props) => {
   return alert(data.message)
   res.status==201 ? Router.reload() : alert('An error occured. Please try again!')
 }
-  export const getServerSideProps: GetServerSideProps = async (context) => {
+  export const getServerSideProps = async(context) => {
     const session = await getSession(context)
     if (!session){
       return {
