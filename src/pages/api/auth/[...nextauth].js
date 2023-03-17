@@ -60,6 +60,7 @@ pages: {
     jwt: async ({ token, user, account }) => {
       user && (token.user = user)
 
+      // ---- **** GOOGLE OR FACEBOOK
       // if (account) {
       //   if (account.provider == "google" || account.provider == "facebook") {
       //     token.user.socialOwner = account.provider
@@ -67,6 +68,7 @@ pages: {
       //     token.user = socialUser
       //   }
       // }
+      // ---- **** GOOGLE OR FACEBOOK
 
       return token
     },
@@ -76,6 +78,7 @@ pages: {
     }
   }
 })
+      // ---- **** GOOGLE OR FACEBOOK
 
 // const getSocialUser = async data => {
 //   const user = await findUserByEmail(data.email)
@@ -99,3 +102,4 @@ pages: {
 
 //   return Promise.resolve({ id: user.id, email: user.email, role: user.role })
 // }
+      // ---- **** GOOGLE OR FACEBOOK

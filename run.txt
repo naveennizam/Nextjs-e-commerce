@@ -6,8 +6,10 @@ next run dev
 4. onepiece-unstitch               (database)
 
 
+CONNECTION AND USER ARE SQL
 
 
 login then go (profile)
 SignUp to go (onefront)
 signOut to go mainpage
+SignOut from profile button it goes on login page

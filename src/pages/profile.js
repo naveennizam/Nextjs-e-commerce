@@ -40,38 +40,38 @@ const Page = (props) => {
               <label className="form-label">Full Name :</label>
               <input name="name" className="form-control shadow-xn text-muted form-control-lg rounded-0 border" type="text" placeholder="Full Name" maxLength="20" defaultValue={props.user.name} required/>
            </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label className="form-label">Address :</label>
               <input name="address" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="text" placeholder="Address" maxLength="50" defaultValue={props.user.address}/>
-            </div>
+            </div> */}
 
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label className="form-label">City :</label>
               <input name="city" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="text" placeholder="City" maxLength="25" defaultValue={props.user.city}/>
-            </div>
-
+            </div> */}
+{/* 
             <div className="mb-3">
             <label className="form-label">State :</label>
             <input name="state" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="text" placeholder="State" maxLength="25" defaultValue={props.user.state}/>
-            </div>
-
+            </div> */}
+{/* 
             <div className="mb-3">
               <label className="form-label">Zip :</label>
               <input name="zip" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="text" placeholder="Zip" maxLength="15" defaultValue={props.user.zip}/>
-            </div>
+            </div> */}
 
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label className="form-label">Phone :</label>
               <input name="phone" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="text" placeholder="Phone" maxLength="20" defaultValue={props.user.phone}/>
-            </div>
-
+            </div> */}
+{/* 
             <div className="mb-3">
-            {/* {props.user.country} */}
+            {/* {props.user.country} 
             <label className="form-label">Country :</label>
-            {/* <Countries selected={props.user.country}/> */}
-            </div>
-            <input name="id" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="hidden" value={props.user.id}/>
-            <button type="submit" className='btn primary-btn'>Update</button>
+            {/* <Countries selected={props.user.country}/> 
+            </div> */}
+            {/* <input name="id" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="hidden" value={props.user.id}/>
+            <button type="submit" className='btn primary-btn'>Update</button> */}
             </form>
           </div>
           <div className='col-md-6'>
@@ -90,7 +90,7 @@ const Page = (props) => {
             <input name="new_password_confirm" className="form-control shadow-xn text-muted form-control-lg rounded-0 border" type="password" placeholder="New Password Confirmation" defaultValue=''  minLength="8" maxLength="12" required/>
             <input name="id" className="form-control shadow-xn text-muted form-control-lg rounded-0 border"  type="hidden" value={props.user.id}/>
             </div>
-            <button type="submit" className='btn primary-btn'>Update</button>
+            <button type="submit"  onClick={() => update()} className='btn primary-btn'>Update</button>
             <button onClick={() => signOut("facebook")} type="button" className="btn btn-white border rounded-0 p-3 flex-fill">
                     SignOut
                   </button>
@@ -122,11 +122,12 @@ const Page = (props) => {
 
   }
   const updatePassword = async (e) => {
-    e.preventDefault();
+   e.preventDefault();
     const id = e.target.id.value.trim();
     const curr_password = e.target.curr_password.value.trim();
     const new_password = e.target.new_password.value.trim();
     const new_password_confirm = e.target.new_password_confirm.value.trim();
+    console.log("done");
     if (!curr_password || !new_password || !new_password_confirm)
     return alert('Invalid details');
     if (new_password != new_password_confirm)

@@ -1,5 +1,5 @@
 
-import { getSession } from "next-auth/react"
+import { getSession, signOut } from "next-auth/react"
 import { signIn } from "next-auth/react"
 import Router from "next/router"
 import Link from "next/link"
@@ -246,7 +246,6 @@ const Page = () => {
     </>
   )
 }
-
 const forgotPassword = async e => {
   e.preventDefault()
 
