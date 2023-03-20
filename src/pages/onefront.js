@@ -6,13 +6,13 @@ import styles from '@/styles/Home.module.css'
 
 const Onepiece = (props) => {
     const [blogging, setblog] = useState(props.myBlog);
-    
+
     return <main >
         <div className='d-flex justify-content-evenly flex-wrap'>
             {blogging?.map((blogitem) => {
                 return (
-                    <div  >
-                        <Link href={`/onepiece/${blogitem.slug}`} className={styles.onefront}>
+                    <div key={blogitem.slug}>
+                        <Link href={`/forSlug/${blogitem.slug}`} className={styles.onefront}>
                             <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }}>
                                 <img src={blogitem.img} className="card-img-top" alt="..." />
                                 <div className="card-body">
@@ -30,7 +30,8 @@ const Onepiece = (props) => {
 
 }  // one piece end parathesis
 
-export async function getStaticProps(context) {
+
+export async function getServerSideProps(context) {
     let data = await fs.promises.readdir('onepiece-unstitch');
 
     let myFile;

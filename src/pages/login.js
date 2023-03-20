@@ -67,7 +67,7 @@ const Page = () => {
                           ></span>
                         </div>
                       </div>
-                      <div className="text-center my-4">
+                      {/* <div className="text-center my-4">
                         <span
                           className="form-label-link"
                           style={{ cursor: "pointer" }}
@@ -75,7 +75,7 @@ const Page = () => {
                         >
                           Forgot Password?
                         </span>
-                      </div>
+                      </div> */}
                       <div className="d-grid pt-3">
                         <button
                           type="submit"
@@ -246,35 +246,34 @@ const Page = () => {
     </>
   )
 }
-const forgotPassword = async e => {
-  e.preventDefault()
 
-  const email = e.target.email.value.trim()
+// const forgotPassword = async e => {
+//   e.preventDefault()
 
-  if (!email || !email.includes("@")) return alert("Invalid email address")
+//   const email = e.target.email.value.trim()
 
-  const form = document.querySelector('[name="forget-pwd-form"]')
+//   if (!email || !email.includes("@")) return alert("Invalid email address")
 
-  const formData = new FormData(form)
+//   const form = document.querySelector('[name="forget-pwd-form"]')
 
-  const res = await fetch("/api/auth/forgot-password", {
-    method: "POST",
-    body: formData
-  })
+//   const formData = new FormData(form)
 
-  const data = await res.json()
+//   const res = await fetch("/api/auth/forgot-password", {
+//     method: "POST",
+//     body: formData
+//   })
 
-  if (res.status != 201) return alert(data.message)
+//   const data = await res.json()
 
-  //console.log(data.message)
+//   if (res.status != 201) return alert(data.message)
 
-  if (res.status == 201) {
-    alert(data.message)
-    Router.reload()
-  } else {
-    alert("An error occured. Please try again!")
-  }
-}
+//   if (res.status == 201) {
+//     alert(data.message)
+//     Router.reload()
+//   } else {
+//     alert("An error occured. Please try again!")
+//   }
+// }
 
 const login = async e => {
   e.preventDefault()
@@ -297,7 +296,7 @@ const login = async e => {
 
   if (status?.error) return alert(status.error)
 
-  Router.push("/profile") //signin (login)
+  Router.push("/onefront") //signin (login)
 }
 
 const register = async e => {
@@ -346,7 +345,7 @@ const register = async e => {
     password: password
   })
 
-  Router.push("/onefront") //SignUp first time
+  Router.push("/profile") //SignUp first time
 }
 
 
@@ -358,7 +357,7 @@ export const getServerSideProps = async req => {
     return {
       redirect: {
         permanent: false,
-        destination: "/onefront" //SignUp after signup
+        destination: "/profile" //SignUp after signup
       }  //second time
     }
   }

@@ -5,6 +5,27 @@
   align-items: center;
   
 }
+#maindiv{
+  display: flex;
+  margin: 1rem;
+  padding: 10px 200px ;
+  justify-content: space-around;
+
+}
+#maindiv2{
+  display: inline-block;
+  padding: 20px;
+  margin-top: 70px;
+  
+}
+#maindiv2 > button{
+  display: inline-block;
+  padding: 10px 60px;
+  background: #000;
+}
+#maindiv1{
+  display: inline-block;
+}
 .mainonefront {
   background-color: tan;
 }
@@ -21,6 +42,29 @@
 #para {
   padding: 0;
   margin: 0;
+}
+
+#price {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+
+}
+
+#maindivbt{
+  display: flex;
+  margin: 2rem 0rem;
+
+  justify-content: space-around;
+
+}
+
+#bt  { /* button size*/
+ padding: 2px 20px;
+border: none;
+border-radius: 5px;
+
 }
 
 .description {
