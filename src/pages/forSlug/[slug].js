@@ -29,10 +29,8 @@ const Slug = (props) => {
     return <main id={styles.maindiv} >
      
         <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }} id={styles.maindiv1}>
-            <img src={blog && blog.img} className="card-img-top" alt="..." />
-            <div className="card-body">
-
-            </div>
+            <img src={blog && blog.image} className="card-img-top" alt="..." />
+           
         </div>
         <div id={styles.maindiv2}>
 
