@@ -303,7 +303,7 @@ const register = async e => {
   e.preventDefault()
 
   const name = e.target.name.value
-  const email = e.target.email.value
+  const email = e.target.emzail.value
   const password = e.target.password.value
   // const country = e.target.country.value;
 
@@ -352,7 +352,6 @@ const register = async e => {
 // when SignUp
 export const getServerSideProps = async req => {
   const session = await getSession(req)
-  console.log('hi');
   if (session) {
     return {
       redirect: {
