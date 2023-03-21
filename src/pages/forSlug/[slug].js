@@ -29,8 +29,10 @@ const Slug = (props) => {
     return <main id={styles.maindiv} >
      
         <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }} id={styles.maindiv1}>
-            <img src={blog && blog.image} className="card-img-top" alt="..." />
-            
+            <img src={blog && blog.img} className="card-img-top" alt="..." />
+            <div className="card-body">
+
+            </div>
         </div>
         <div id={styles.maindiv2}>
 
@@ -68,48 +70,3 @@ export async function getServerSideProps(context) {
 
 }
 export default Slug
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export async function getStaticPaths() {
-//     return {
-//         paths: [
-//             { params: { slug: "black" } },
-//             { params: { slug: "pink" } },
-//             { params: { slug: "red" } },
-//             { params: { slug: "white" } },
-
-//         ],
-//         fallback: true,
-//     }
-// }
-
-// export async function getStaticProps(context) {
-
-//     const { slug } = context.params
-//     let myBlog = await fs.promises.readFile(`onepiece-unstitch/${slug}.json`, 'utf-8')
-//     return { props: { myBlog: JSON.parse(myBlog) } }
-
-// }
