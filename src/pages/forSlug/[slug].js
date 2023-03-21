@@ -40,7 +40,7 @@ const Slug = (props) => {
             <p className="card-text" id={styles.price}>{blog && blog.price}</p>
 
             <div id={styles.maindivbt}>
-                <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                <div className="btn-group btn-group-lg" role="group" aria-label="...">
                     <button id={styles.bt} type="button" onClick={decNum}>-</button>
                     <input type="text" className="form-control" id="inputPassword2" value={num} onChange={handleChange} />
                     <button id={styles.bt} type="button" onClick={incNum}>+</button>
