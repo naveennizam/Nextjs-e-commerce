@@ -14,7 +14,7 @@ const Onepiece = (props) => {
                     return (
                         // <div key={blogitem.slug} >
                         <div key={blogitem.slug} >
-                            <Link href={`/forSlug/${blogitem.slug}`} className={styles.onefront}>
+                            <Link href={`/forSlug/${blogitem.prodCode}`} className={styles.onefront}>
                                 <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }}>
                                     <img src={blogitem.image} className="card-img-top" alt="..." />
                                     <div className="card-body">
@@ -36,12 +36,14 @@ const Onepiece = (props) => {
 
 
 export async function getServerSideProps(context) {
+   
     const rest = await fetch("http://localhost:3000/api/fetchDataSql", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
     })
+
 
     let data = await rest.json()
 

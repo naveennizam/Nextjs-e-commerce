@@ -10,7 +10,6 @@ const handler = async (req, res) => {
       "SELECT * FROM " + table
     )
 
-
     res.json(rows)
 
 
