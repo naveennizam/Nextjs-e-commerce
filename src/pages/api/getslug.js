@@ -1,45 +1,29 @@
 import { connectToDatabase } from "../../../database/connection"
 
 const handler = async (req, res) => {
-     
+    
+   
     if (req.method === "GET") {
-    const {slug} = req.query;
+      const {slug} = req.query;
+      console.log(slug);
+      let client = await connectToDatabase()
+      let table = "products"
+    
+      const [rows, fields] = await client.query(
+         "SELECT * FROM " + table + " WHERE prodCode = ?",  [slug]
+    
+      )
+      res.json(rows[0])  
+    }
     
 
-    let client = await connectToDatabase()
-    let table = "products"
-  
-    const [rows, fields] = await client.query(
-       "SELECT * FROM " + table + " WHERE prodCode = ?",  [slug]
-  
-    )
-    res.json(rows[0])
-    
-  } else {
+   else {
     return res.status(405).json({ message: "Method not allowed." })
   }
+
 }
 
 export default handler
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

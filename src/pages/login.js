@@ -296,7 +296,7 @@ const login = async e => {
 
   if (status?.error) return alert(status.error)
 
-  Router.push("/onefront") //signin (login)
+  Router.push("/front/onefront") //signin (login)
 }
 
 const register = async e => {

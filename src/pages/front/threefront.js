@@ -1,6 +1,4 @@
 import React from 'react'
-
-
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 
@@ -37,7 +35,7 @@ const Onepiece = (props) => {
 
 export async function getServerSideProps(context) {
    
-    const rest = await fetch("http://localhost:3000/api/fetchDataSql", {
+    const rest = await fetch("http://localhost:3000/api/threePieceSql", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

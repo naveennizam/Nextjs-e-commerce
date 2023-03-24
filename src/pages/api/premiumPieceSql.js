@@ -7,7 +7,9 @@ const handler = async (req, res) => {
     let table = "products"
 
     const [rows, fields] = await client.query(
-      "SELECT * FROM " + table
+      
+      "SELECT * FROM " + table  +  " WHERE  prodName = '4PC lawn Unstitch Printed'"
+
     )
 
     res.json(rows)
