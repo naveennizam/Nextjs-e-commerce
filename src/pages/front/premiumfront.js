@@ -32,7 +32,7 @@ const PremiumDress = () => {
                 method: "GET",
             }).then((res) => res.json())
                 .then(db => {
-                    console.log(db);
+                    
                     setPremiumPiece(db)
                 })
         }
@@ -44,7 +44,7 @@ const PremiumDress = () => {
         getData()
 
     }, [])
-    console.log('premiumPiece', premiumPiece);
+   
     return <main >
         <div className='d-flex justify-content-evenly flex-wrap'>
 

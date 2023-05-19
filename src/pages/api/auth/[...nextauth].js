@@ -1,6 +1,8 @@
 
 import NextAuth from "next-auth"
-import { findUserByEmail, insertUser } from "../../../database/user"
+
+import { findUserByEmail, insertUser } from "../../../../database/user"
+
 import { compare } from "bcryptjs"
 import CredentialsProvider from "next-auth/providers/credentials"
 
