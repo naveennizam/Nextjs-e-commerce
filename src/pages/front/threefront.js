@@ -1,14 +1,29 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 
-const Onepiece = (props) => {
+const ThreePiece = () => {
+    const [threePiece, setThreePiece] = useState([])
+
+    const getData = async () => {
+        try {
+            await fetch("/api/threePiece", {
+                method: "GET",
+                headers: { "content-type": "application/json" }
+            }).then((res) => res.json())
+                .then((db) => { setThreePiece(db) })
+        }
+        catch (err) { console.log(err); }
+    }
+    useEffect(() => {
+        getData()
+    }, [])
 
     return <main >
         <div className='d-flex justify-content-evenly flex-wrap'>
 
-            {props.data.length > 0 &&
-                props.data.map((blogitem) => {
+            {threePiece.length > 0 &&
+                threePiece.map((blogitem) => {
                     return (
                         // <div key={blogitem.slug} >
                         <div key={blogitem.slug} >
@@ -19,7 +34,7 @@ const Onepiece = (props) => {
                                         <h5 className="card-title">{blogitem.prodName}</h5>
                                         <p className="card-text" id={styles.para}>{blogitem.prodCode}</p>
                                         <p className="card-text" id={styles.para}>{blogitem.slug}</p>
-                                        <p className="card-text" id={styles.para}>{blogitem.prodPrice}</p>
+                                        <p className="card-text fw-bold" id={styles.para}>Rs. {blogitem.prodPrice}</p>
                                     </div>
                                 </div>
                             </Link>
@@ -29,25 +44,7 @@ const Onepiece = (props) => {
         </div>
     </main>
 
-}  // one piece end parathesis
+} 
 
 
-
-export async function getServerSideProps(context) {
-   
-    const rest = await fetch("http://localhost:3000/api/threePieceSql", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-    })
-
-
-    let data = await rest.json()
-
-    return { props: { data } }
-    //return { props: {data : data} }
-}
-
-
-export default Onepiece
+export default ThreePiece

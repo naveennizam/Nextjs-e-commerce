@@ -2,13 +2,17 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <>
-            <div className="footer text-light bg-dark py-4">
-                <div className="container ">
+        <> 
+        {/* npm i @artsy/fresnel , add thid --> disableDynamicMediaQueries 
+          to keep it away  Warning: Expected server HTML to contain a matching <div> in <div>. */}
+     
+            <div className="footer text-light bg-dark py-4" disableDynamicMediaQueries>
+                <div className="container " >
                     <div className="row ">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                             <div className="ft-logo">
-                                <img src="https://easetemplate.com/free-website-templates/cointrade/images/logo.png" alt="" /></div>
+                                <img src="https://easetemplate.com/free-website-templates/cointrade/images/logo.png" alt="" />
+                            </div>
                         </div>
                     </div>
                     <hr className="footer-line" />

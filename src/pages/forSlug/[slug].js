@@ -1,8 +1,6 @@
-
 import React from 'react'
 import { useState } from "react";
 import styles from '@/styles/Home.module.css'
-
 
 const Slug = (props) => {
     let [icr, setInc] = useState(1);
@@ -32,8 +30,6 @@ const Slug = (props) => {
     let handleChange = (e) => {
         setNum(e.target.value);
     }
-
-
 
     const [blog, setblog] = useState(props.data);
 

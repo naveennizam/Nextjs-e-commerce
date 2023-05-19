@@ -5,7 +5,7 @@ const handler = async (req, res) => {
    
     if (req.method === "GET") {
       const {slug} = req.query;
-      console.log(slug);
+      
       let client = await connectToDatabase()
       let table = "products"
     
