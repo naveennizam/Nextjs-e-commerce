@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import Paginate from '../../../Components/pagination'
 import ReactPaginate from 'react-paginate';
+import Pagination from '@mui/material/Pagination';
 
 const PremiumDress = () => {
     const [premiumPiece, setPremiumPiece] = useState([]);
@@ -11,12 +12,8 @@ const PremiumDress = () => {
     const [postsPerPage] = useState(3);
     const indexOfLastPost = currentPage * postsPerPage;
 
-    // console.log('indexOfLastPost', indexOfLastPost);
-
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = premiumPiece.slice(indexOfFirstPost, indexOfLastPost);
-
-    // console.log('currentPosts', currentPosts);
 
     const paginate = ({ selected }) => {
 
@@ -27,13 +24,13 @@ const PremiumDress = () => {
         try {
 
             await fetch("/api/premiumPiece?" + new URLSearchParams({
-                page: `${currentPage}`, first: `${postsPerPage}`, skip: `${currentPage * postsPerPage - postsPerPage}`
+                page: `${currentPage}`, limit: `${postsPerPage}`, skip: `${currentPage * postsPerPage - postsPerPage}`
             }), {
                 method: "GET",
             }).then((res) => res.json())
                 .then(db => {
-                    
-                    setPremiumPiece(db)
+                    console.log(db.count);  // {total: 12}
+                    setPremiumPiece(db.data)
                 })
         }
         catch (err) {
@@ -44,12 +41,12 @@ const PremiumDress = () => {
         getData()
 
     }, [])
-   
-    return <main >
-        <div className='d-flex justify-content-evenly flex-wrap'>
 
-            {premiumPiece.length > 0 &&
-                premiumPiece.map((blogitem) => {
+    return <main disableDynamicMediaQueries >
+        <div className='d-flex justify-content-evenly flex-wrap' >
+
+            {currentPosts.length > 0 &&
+                currentPosts.map((blogitem) => {
                     return (
                         <div key={blogitem.slug} >
                             <Link href={`/forSlug/${blogitem.prodCode}`} className={styles.onefront}>
@@ -66,6 +63,11 @@ const PremiumDress = () => {
                         </div>
                     )
                 })}
+            {/* <Pagination  variant="outlined"   shape="rounded" 
+   onChange ={paginate}
+   count = {Math.ceil(premiumPiece.length / postsPerPage)}
+page= {currentPage}
+   /> */}
 
             <ReactPaginate
                 onPageChange={paginate}
@@ -78,8 +80,7 @@ const PremiumDress = () => {
                 nextLinkClassName={'page-number'}
                 activeLinkClassName={'active'}
             />
-            {/* <button onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
-            <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button> */}
+
         </div>
     </main>
 

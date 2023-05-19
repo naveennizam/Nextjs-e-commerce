@@ -142,3 +142,10 @@ INSERT INTO `products` (`ProductId` , `prodName` , `prodCode` , `prodPrice` , `s
 
 
 
+/*
+USER
+*********************************************************************
+*/
+
+
+INSERT INTO `user` (`id` , `name` , `password` , `Email` , `role` ) VALUES ('38', 'jubina','12345678','jubina@gmail.com', 'user');

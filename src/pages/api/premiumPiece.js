@@ -8,7 +8,7 @@ const handler = async (req, res) => {
     let data = await premiumPieceDress()
    
 
-    res.status(200).json(data);
+    res.status(200).json({data,count});
 
 
   } else {
