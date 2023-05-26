@@ -7,7 +7,7 @@ import Pagination from '@mui/material/Pagination';
 import { useParams } from 'react-router-dom';
 import { useRouter } from "next/router";
 import { PaginationItem } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+
 
 const PremiumDress = (props) => {
     const [premiumPiece, setPremiumPiece] = useState([]);
@@ -18,18 +18,18 @@ const PremiumDress = (props) => {
 
     const router = useRouter();
 
-
+    // let g = (router.components);
+    // let d = Object.values(g)
+    // console.log(d[2].props.pageProps.page);
 
     const paginated = (event, value) => {
 
-        router.replace({
-            pathname: '/front/premiumfront',
-            query: { page: `${value}`, }
-        })
+        // router.replace({
+        //     pathname: '/front/premiumfront',
+        //     query: { page: `${value}`, }
+        // })
 
-        let g = (router.components);
-        let d = Object.values(g)
-        console.log(d[2].props.pageProps.page);
+
         setCurrentPage(value);
     };
 
