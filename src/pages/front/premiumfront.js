@@ -4,20 +4,33 @@ import styles from '@/styles/Home.module.css'
 import Paginate from '../../../Components/pagination'
 import ReactPaginate from 'react-paginate';
 import Pagination from '@mui/material/Pagination';
+import { useParams } from 'react-router-dom';
+import { useRouter } from "next/router";
+import { PaginationItem } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
-const PremiumDress = () => {
+const PremiumDress = (props) => {
     const [premiumPiece, setPremiumPiece] = useState([]);
-
-    const [currentPage, setCurrentPage] = useState(1);
+    const [count, setcount] = useState()
+    let [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
-    const indexOfLastPost = currentPage * postsPerPage;
+    let currentPosts = premiumPiece.slice(0, postsPerPage);
 
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = premiumPiece.slice(indexOfFirstPost, indexOfLastPost);
+    const router = useRouter();
 
-    const paginate = ({ selected }) => {
 
-        setCurrentPage(selected + 1);
+
+    const paginated = (event, value) => {
+
+        router.replace({
+            pathname: '/front/premiumfront',
+            query: { page: `${value}`, }
+        })
+
+        let g = (router.components);
+        let d = Object.values(g)
+        console.log(d[2].props.pageProps.page);
+        setCurrentPage(value);
     };
 
     const getData = async () => {
@@ -29,7 +42,7 @@ const PremiumDress = () => {
                 method: "GET",
             }).then((res) => res.json())
                 .then(db => {
-                    console.log(db.count);  // {total: 12}
+                    setcount(db.count);
                     setPremiumPiece(db.data)
                 })
         }
@@ -38,51 +51,56 @@ const PremiumDress = () => {
         }
     }
     useEffect(() => {
+        // window.scrollTo(0, 0)
         getData()
 
-    }, [])
+    }, [currentPage])
 
-    return <main disableDynamicMediaQueries >
-        <div className='d-flex justify-content-evenly flex-wrap' >
+    return (
+        <div>
+            <div className='d-flex justify-content-evenly flex-wrap' >
+                {currentPosts.length > 0 &&
+                    currentPosts.map((blogitem) => {
+                        return (
+                            <div key={blogitem.ProductId} >
+                                <Link href={{
+                                    pathname: `/forSlug/${blogitem.prodCode}`
+                                }} className={styles.onefront}>
 
-            {currentPosts.length > 0 &&
-                currentPosts.map((blogitem) => {
-                    return (
-                        <div key={blogitem.slug} >
-                            <Link href={`/forSlug/${blogitem.prodCode}`} className={styles.onefront}>
-                                <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }}>
-                                    <img src={blogitem.image} className="card-img-top" alt="..." />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{blogitem.prodName}</h5>
-                                        <p className="card-text" id={styles.para}>{blogitem.prodCode}</p>
-                                        <p className="card-text" id={styles.para}>{blogitem.slug}</p>
-                                        <p className="card-text fw-bold" id={styles.para}>Rs. {blogitem.prodPrice}</p>
+                                    <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }}>
+                                        <img src={blogitem.image} className="card-img-top" alt="..." />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{blogitem.prodName}</h5>
+                                            <p className="card-text" id={styles.para}>{blogitem.prodCode}</p>
+                                            <p className="card-text" id={styles.para}>{blogitem.slug}</p>
+                                            <p className="card-text fw-bold" id={styles.para}>Rs. {blogitem.prodPrice}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        </div>
-                    )
-                })}
-            {/* <Pagination  variant="outlined"   shape="rounded" 
-   onChange ={paginate}
-   count = {Math.ceil(premiumPiece.length / postsPerPage)}
-page= {currentPage}
-   /> */}
+                                </Link>
+                            </div>
+                        )
+                    })}
+            </div>
 
-            <ReactPaginate
-                onPageChange={paginate}
-                pageCount={Math.ceil(premiumPiece.length / postsPerPage)}
-                previousLabel={'Prev'}
-                nextLabel={'Next'}
-                containerClassName={'pagination'}
-                pageLinkClassName={'page-number'}
-                previousLinkClassName={'page-number'}
-                nextLinkClassName={'page-number'}
-                activeLinkClassName={'active'}
-            />
+            <div style={{ position: 'absolute', right: '100px' }}>
+                <Pagination
+                    onChange={paginated}
+                    count={Math.ceil(count / postsPerPage)}
+                    color="secondary"
+                    defaultPage={1}
 
+
+                />
+            </div>
         </div>
-    </main>
+    )
 
 }
 export default PremiumDress
+
+export const getServerSideProps = async (context) => {
+
+    const page = (context.req.headers.referer) //previous Page URL
+
+    return { props: { page } };
+};

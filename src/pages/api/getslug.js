@@ -4,13 +4,15 @@ const handler = async (req, res) => {
     
    
     if (req.method === "GET") {
-      const {slug} = req.query;
-      
-      let client = await connectToDatabase()
-      let table = "products"
+  
+     let slug = Object.values(req.query)[0]
     
+       console.log('slug',slug);
+  //   let slug = 'Fabric SL-35034'
+      let client = await connectToDatabase()
+      let table = "premium_lawn"
       const [rows, fields] = await client.query(
-         "SELECT * FROM " + table + " WHERE prodCode = ?",  [slug]
+        "SELECT * FROM " + table + " WHERE prodCode = ? ",  [slug]
     
       )
       res.json(rows[0])  

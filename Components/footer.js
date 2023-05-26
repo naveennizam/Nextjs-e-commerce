@@ -6,7 +6,7 @@ const Footer = () => {
         {/* npm i @artsy/fresnel , add thid --> disableDynamicMediaQueries 
           to keep it away  Warning: Expected server HTML to contain a matching <div> in <div>. */}
      
-            <div className="footer text-light bg-dark py-4" disableDynamicMediaQueries>
+            <div className="footer text-light bg-dark py-4 mt-5" disableDynamicMediaQueries>
                 <div className="container " >
                     <div className="row ">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
