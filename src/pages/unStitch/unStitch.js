@@ -2,11 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 const Unstitch = () => {
-  let [currentPage, setCurrentPage] = useState(1);
  
-
-
-
 
   return (
     <>
@@ -27,8 +23,8 @@ const Unstitch = () => {
         <div className='row '>
           <div className="col-md-12 " >
             <Link href={'/front/threefront'}>  <img style={{ width: '49.6%' }} className="pe-0 ps-2  py-1" src="https://www.gulahmedshop.com/media/wysiwyg/cms-page/14_ideas_unstitched/23_02_13/03.jpg" alt="..." /></Link>
-            <Link href={{ pathname: '/front/premiumfront' }}>    <img style={{ width: '49%' }} className="pe-0 ps-2  py-1" src="https://www.gulahmedshop.com/media/wysiwyg/cms-page/14_ideas_unstitched/23_02_13/06.jpg" alt="..." /></Link>
-          </div>  {/* ,query:`page=${currentPage}` */}
+            <Link href={{ pathname: '/front/premiumfront/',query:`page=${1}` }}>    <img style={{ width: '49%' }} className="pe-0 ps-2  py-1" src="https://www.gulahmedshop.com/media/wysiwyg/cms-page/14_ideas_unstitched/23_02_13/06.jpg" alt="..." /></Link>
+          </div>  
         </div>
 
       </div>

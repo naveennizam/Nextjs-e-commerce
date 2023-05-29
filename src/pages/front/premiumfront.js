@@ -6,7 +6,12 @@ import ReactPaginate from 'react-paginate';
 import Pagination from '@mui/material/Pagination';
 import { useParams } from 'react-router-dom';
 import { useRouter } from "next/router";
-import { PaginationItem } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import { useRef } from 'react';
+import history from 'history';
+import Typography from '@mui/material/Typography'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 const PremiumDress = (props) => {
@@ -16,21 +21,22 @@ const PremiumDress = (props) => {
     const [postsPerPage] = useState(3);
     let currentPosts = premiumPiece.slice(0, postsPerPage);
 
+
     const router = useRouter();
 
-    // let g = (router.components);
-    // let d = Object.values(g)
-    // console.log(d[2].props.pageProps.page);
+    useEffect(() => {
+
+        setCurrentPage(router.query.page);
+
+    }, [router.query.page]);
 
     const paginated = (event, value) => {
-
-        // router.replace({
-        //     pathname: '/front/premiumfront',
-        //     query: { page: `${value}`, }
-        // })
-
-
-        setCurrentPage(value);
+        console.log('value', value);
+        router.push({
+            pathname: '/front/premiumfront',
+            query: { page: `${value}` },
+        })
+        setCurrentPage(value)
     };
 
     const getData = async () => {
@@ -50,8 +56,14 @@ const PremiumDress = (props) => {
             console.log(err);
         }
     }
+
+    const heart = (color) => {
+    
+        color = 'warning'
+    }
+
     useEffect(() => {
-        // window.scrollTo(0, 0)
+        window.scrollTo(0, 0)
         getData()
 
     }, [currentPage])
@@ -62,21 +74,28 @@ const PremiumDress = (props) => {
                 {currentPosts.length > 0 &&
                     currentPosts.map((blogitem) => {
                         return (
-                            <div key={blogitem.ProductId} >
-                                <Link href={{
-                                    pathname: `/forSlug/${blogitem.prodCode}`
-                                }} className={styles.onefront}>
 
-                                    <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }}>
+                            <div key={blogitem.ProductId} >
+
+                                <div className="card my-5 mx-4 shadow-lg bg-white rounded" style={{ width: "18rem" }}>
+                                    <Link href={{
+                                        pathname: `/forSlug/${blogitem.prodCode}`
+                                    }} className={styles.onefront}>
+
                                         <img src={blogitem.image} className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <h5 className="card-title">{blogitem.prodName}</h5>
-                                            <p className="card-text" id={styles.para}>{blogitem.prodCode}</p>
-                                            <p className="card-text" id={styles.para}>{blogitem.slug}</p>
-                                            <p className="card-text fw-bold" id={styles.para}>Rs. {blogitem.prodPrice}</p>
-                                        </div>
+                                    </Link>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{blogitem.prodName}</h5>
+                                        <p className="card-text" id={styles.para}>{blogitem.prodCode}</p>
+                                        <p className="card-text" id={styles.para}>{blogitem.slug}</p>
+                                        <p className="card-text fw-bold" id={styles.para}>Rs. {blogitem.prodPrice}</p>
+                                        {/* <IconButton  >
+                                        </IconButton> */}
+                                        <FavoriteBorderIcon style={{ float: 'right' }} onClick={heart} />
+
                                     </div>
-                                </Link>
+
+                                </div>
                             </div>
                         )
                     })}
@@ -89,10 +108,9 @@ const PremiumDress = (props) => {
                     color="secondary"
                     defaultPage={1}
 
-
                 />
             </div>
-        </div>
+        </div >
     )
 
 }

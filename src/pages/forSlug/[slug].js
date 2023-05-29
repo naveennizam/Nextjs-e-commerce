@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from '@/styles/Home.module.css'
 
-const Slug =  (props) => {
+const Slug = (props) => {
 
-    const data =  props.productCode.slug;
+    const data = props.productCode.slug;
 
     const [a, setPremiumPiece] = useState();
     const [icr, setInc] = useState(1);
- 
+
 
     function incrementQty() {
         var value = document.querySelector('button').value;
@@ -36,23 +36,23 @@ const Slug =  (props) => {
         setNum(e.target.value);
     }
     useEffect(() => {
-    const getData = async () => {
-        try {
+        const getData = async () => {
+            try {
 
-            await fetch(`/api/getslug?prodCode=${data}`, {
-                method: "GET",
-            }).then((res) => res.json())
-                .then(db => {
+                await fetch(`/api/getslug?prodCode=${data}`, {
+                    method: "GET",
+                }).then((res) => res.json())
+                    .then(db => {
 
-                    setPremiumPiece(db)
-                })
+                        setPremiumPiece(db)
+                    })
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
-        catch (err) {
-            console.log(err);
-        }
-    }
-    getData()
-    
+        getData()
+
     }, [])
 
 
@@ -89,8 +89,8 @@ export default Slug
 
 
 export const getServerSideProps = async (context) => {
-    console.log('context',context.query);
-    const productCode =   context.query;
+    console.log('context', context.query);
+    const productCode = context.query;
     return { props: { productCode } };
 };
 

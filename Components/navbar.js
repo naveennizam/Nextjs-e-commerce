@@ -47,7 +47,7 @@ const Navbar = () => {
                                 <a className="nav-link navbar-brand text-uppercase " href="#">Fragnance</a>
                             </li>
                         </ul>
-                        <a onClick={() => signOut()} href="/login" className="nav-link navbar-brand text-uppercase ">SignOut</a>
+                        <a onClick={() => signOut()} href="/" className="nav-link navbar-brand text-uppercase ">SignOut</a>
                         <a className="nav-link navbar-brand text-uppercase " href="/login">Signup</a>
 
                         <div className={styles.container}>
